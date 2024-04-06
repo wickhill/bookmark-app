@@ -5,6 +5,8 @@ require('dotenv').config();
 
 const app = express();
 
+const bookmarksController = require('./controllers/bookmarkController')
+
 // set up middleware
 app.use(cors());
 
@@ -14,21 +16,12 @@ app.get("/", (req, res) => {
     res.send("Hello World");
   });
 
-  // Seed route to seed our data
-  app.get('/seed', function (req, res) {
-    // Remove any existing fruits
-    db.Bookmark.deleteMany({})
-        .then(removedBookmarks => {
-            console.log(`Removed ${removedBookmarks.length} bookmarks`)
+  app.get("/bookmarks", (req, res) => {
+    // send projects via JSON
+    res.json(bookmarks);
+  });
 
-            // Seed the fruits collection with the seed data
-            db.Fruit.insertMany(db.seedFruits)
-                .then(addedBookmarks => {
-                    console.log(`Added ${addedBookmarks.length} Bookmarks`)
-                    res.json(addedBookmarks)
-                })
-        })
-})
+  app.use('/bookmarks', bookmarksController)
 
 //declare a variable for our port number
 const PORT = process.env.PORT || 3000;
