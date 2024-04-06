@@ -10,18 +10,13 @@ const bookmarks = require('./bookmarks.json')
 // set up middleware
 app.use(cors());
 
-//home route for testing our app
-app.get("/", (req, res) => {
-    res.send("Hello World");
-  });
-
-
-  // INDEX - Index of clickable list items
-app.get("/", (req, res) => {
-  db.Bookmark.find({})
-   .then(bookmarks => res.json(bookmarks))
-   .catch((err) => res.json({ error: err.message }));
-})
+// // INDUCES
+//   // INDEX - Index of clickable list items
+// app.get("/", (req, res) => {
+//   db.Bookmark.find({})
+//    .then(bookmarks => res.json(bookmarks))
+//    .catch((err) => res.json({ error: err.message }));
+// })
 
 // CREATE - Create a new bookmark
 app.post('/bookmarks', async (req, res) => {
@@ -39,7 +34,7 @@ app.post('/bookmarks', async (req, res) => {
 // SHOW - Show a single bookmark
 app.get('/bookmarks/:id', async (req, res) => {
   try {
-    const bookmark = await Bookmark.findById(req.params.id);
+    const bookmark = await Bookmark.findById(req.params._id);
     if (!bookmark) {
       return res.status(404).json({ error: 'Bookmark not found' });
     }
@@ -55,7 +50,7 @@ app.put('/bookmarks/:id', async (req, res) => {
   try {
     const { title, url } = req.body;
     const updatedBookmark = await Bookmark.findByIdAndUpdate(
-      req.params.id,
+      req.params._id,
       { title, url },
       { new: true }
     );
@@ -72,7 +67,7 @@ app.put('/bookmarks/:id', async (req, res) => {
 // DELETE - Delete a bookmark
 app.delete('/bookmarks/:id', async (req, res) => {
   try {
-    const deletedBookmark = await Bookmark.findByIdAndDelete(req.params.id);
+    const deletedBookmark = await Bookmark.findByIdAndDelete(req.params._id);
     if (!deletedBookmark) {
       return res.status(404).json({ error: 'Bookmark not found' });
     }
@@ -83,7 +78,7 @@ app.delete('/bookmarks/:id', async (req, res) => {
   }
 });
 
-  app.get("/bookmarks", (req, res) => {
+  app.get("/", (req, res) => {
     // send projects via JSON
     res.json(bookmarks);
   });
