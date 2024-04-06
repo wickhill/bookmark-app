@@ -19,7 +19,7 @@ function App() {
     fetchBookmarks();
   }, []); 
 
-    // Function to handle deletion of a bookmark
+    // handle deletion of a bookmark
     const onDelete = (id) => {
       fetch(`${URL}bookmarks/${id}`, {
         method: 'DELETE',
@@ -30,7 +30,7 @@ function App() {
       .catch(error => console.error('Error deleting bookmark:', error));
     };
   
-    //Function to handle updating of a bookmark
+    // handle updating of a bookmark
     const onUpdate = (id, updatedInfo) => {
       fetch(`${URL}bookmarks/${id}`, {
         method: 'PUT',
