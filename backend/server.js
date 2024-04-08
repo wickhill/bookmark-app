@@ -22,7 +22,7 @@ app.use(cors());
 app.post('/bookmarks', async (req, res) => {
   try {
     const { title, url } = req.body;
-    const newBookmark = new Bookmark({ title, url });
+    const newBookmark = new db.Bookmark({ title, url });
     await newBookmark.save();
     res.status(201).json(newBookmark);
   } catch (error) {
@@ -34,7 +34,7 @@ app.post('/bookmarks', async (req, res) => {
 // SHOW - Show a single bookmark
 app.get('/bookmarks/:id', async (req, res) => {
   try {
-    const bookmark = await Bookmark.findById(req.params._id);
+    const bookmark = await db.Bookmark.findById(req.params.id);
     if (!bookmark) {
       return res.status(404).json({ error: 'Bookmark not found' });
     }
@@ -49,8 +49,8 @@ app.get('/bookmarks/:id', async (req, res) => {
 app.put('/bookmarks/:id', async (req, res) => {
   try {
     const { title, url } = req.body;
-    const updatedBookmark = await Bookmark.findByIdAndUpdate(
-      req.params._id,
+    const updatedBookmark = await db.Bookmark.findByIdAndUpdate(
+      req.params.id,
       { title, url },
       { new: true }
     );
@@ -67,7 +67,7 @@ app.put('/bookmarks/:id', async (req, res) => {
 // DELETE - Delete a bookmark
 app.delete('/bookmarks/:id', async (req, res) => {
   try {
-    const deletedBookmark = await Bookmark.findByIdAndDelete(req.params._id);
+    const deletedBookmark = await db.Bookmark.findByIdAndDelete(req.params.id);
     if (!deletedBookmark) {
       return res.status(404).json({ error: 'Bookmark not found' });
     }
@@ -83,54 +83,6 @@ app.delete('/bookmarks/:id', async (req, res) => {
     res.json(bookmarks);
   });
 
-
-  // INDEX - Index of clickable list items
-app.get("/", (req, res) => {
-  db.Bookmark.find({})
-   .then(bookmarks => res.json(bookmarks))
-   .catch((err) => res.json({ error: err.message }));
-})
-
-// CREATE - Create a new bookmark
-app.post("/", async (req, res) => {
-  console.log(req.body)
-  const newBookmark = (req.body)
-  await db.Bookmark.create(req.body)
-  .then((bookmarks) => res.json(bookmarks))
-  .catch((err) => res.json({ error: err.message }))
-})
-
-// SHOW - Show a single bookmark
-app.get("/:id", (req, res) => {
-  db.Bookmark.findById(req.params.id)
-    .then((bookmarks) => {
-      if (!bookmarks) res.status(404).json({ error: "Bookmark not found" })
-      else res.json(bookmarks)
-    })
-    .catch((err) => res.json({ error: err.message }))
-})
-
-// UPDATE - Update a bookmark
-app.put("/:id", (req, res) => {
-  db.Bookmark.findByIdAndUpdate(req.params.id, req.body, { new: true })
-   .then((bookmarks) => {
-      if (!bookmarks) res.status(404).json({ error: "Bookmark not found" })
-      else res.json(bookmarks)
-    })
-   .catch((err) => res.json({ error: err.message }))
-})
-
-// DELETE - Delete a bookmark
-app.delete("/:id", (req, res) => {
-  db.Bookmark.findByIdAndDelete(req.params.id)
-      .then(() => res.json({ message: "Fruit successfully deleted" }))
-      .catch((err) => res.json({ error: err.message }));
-    })
-
-  app.get("/bookmarks", (req, res) => {
-    // send projects via JSON
-    res.json(bookmarks);
-  });
 
 //declare a variable for our port number
 const PORT = process.env.PORT || 3000;
