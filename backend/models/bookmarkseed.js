@@ -1,4 +1,4 @@
-[
+const bookmarks = [
     {
         "title": "React",
         "url": "https://reactjs.org/"
@@ -20,3 +20,5 @@
         "url": "https://www.google.com/"
     }   
 ]
+
+module.exports = bookmarks
