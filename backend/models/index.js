@@ -12,5 +12,6 @@ db.on("connected", function() {
 })
 
 module.exports = {
-    Bookmark: require('./bookmarks')
+    Bookmark: require('./bookmarks'),
+    seedBookmarks: require("./bookmarkseed")
 }
