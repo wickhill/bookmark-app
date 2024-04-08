@@ -11,17 +11,17 @@ const bookmarks = require('./bookmarks.json')
 app.use(cors());
 
 //home route for testing our app
-app.get("/", (req, res) => {
-    res.send("Hello World");
-  });
+// app.get("/", (req, res) => {
+//     res.send("Hello World");
+//   });
 
 
   // INDEX - Index of clickable list items
-app.get("/", (req, res) => {
-  db.Bookmark.find({})
-   .then(bookmarks => res.json(bookmarks))
-   .catch((err) => res.json({ error: err.message }));
-})
+// app.get("/", (req, res) => {
+//   db.Bookmark.find({})
+//    .then(bookmarks => res.json(bookmarks))
+//    .catch((err) => res.json({ error: err.message }));
+// })
 
 // CREATE - Create a new bookmark
 app.post('/bookmarks', async (req, res) => {
@@ -83,7 +83,7 @@ app.delete('/bookmarks/:id', async (req, res) => {
   }
 });
 
-  app.get("/bookmarks", (req, res) => {
+  app.get("/", (req, res) => {
     // send projects via JSON
     res.json(bookmarks);
   });
