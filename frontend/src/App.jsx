@@ -55,7 +55,7 @@ function App() {
     <div className="App">
   <Routes>
  <Route path="/" element={<BookmarkList bookmarks={bookmarks} onDelete={onDelete} onUpdate={onUpdate} />} />
- <Route path="/:id" element={<BookmarkDetails />} />
+ <Route path="bookmarks/:id" element={<BookmarkDetails URL={URL} />} />
  <Route path="/new" element={<BookmarkForm />} />
  </Routes>
     </div>

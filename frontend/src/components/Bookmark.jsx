@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom"
 
-function Bookmark({ bookmark, onDelete, onUpdate }) {
+function Bookmark({ bookmark, onDelete }) {
   const { _id, title, url } = bookmark;
 
   return (
@@ -9,14 +9,14 @@ function Bookmark({ bookmark, onDelete, onUpdate }) {
       <a href={url} target="_blank" rel="noopener noreferrer">
         {title}
       </a>
-{/* Reference for target: https://www.w3schools.com/tags/att_a_target.asp */}
-{/* Reference for noreferrer: https://www.w3schools.com/tags/att_a_rel.asp */}
-      {onDelete && (
-        <button onClick={() => onDelete(_id)}>Delete</button>
-      )}
-      {onUpdate && (
-        <Link to={"/"}>Update</Link>
-      )}
+      {/* Reference for target: https://www.w3schools.com/tags/att_a_target.asp */}
+      {/* Reference for noreferrer: https://www.w3schools.com/tags/att_a_rel.asp */}
+      {/* Show Info button */}
+      <Link to={`/bookmarks/${_id}`}>Show Info</Link>
+      {/* Link to update route*/}
+      <Link to={`/update/${_id}`}>Update</Link>
+       {/* Delete button */}
+       <button onClick={() => onDelete(_id)}>Delete</button>
     </div>
   );
 }

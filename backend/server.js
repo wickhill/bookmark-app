@@ -8,7 +8,8 @@ const db = require('./models')
 
 // set up middleware
 app.use(cors());
-
+// Middleware to parse JSON bodies
+app.use(express.json())
 
 // INDUCES
   // INDEX - Index of clickable list items
@@ -17,7 +18,6 @@ app.get("/", (req, res) => {
    .then(bookmarks => res.json(bookmarks))
    .catch((err) => res.json({ error: err.message }));
 })
-
 
 //SEEDING route for bookmarks
 //Route to delete existing bookmarks and seed the database with initial data
@@ -55,7 +55,6 @@ app.delete('/bookmarks/:id', async (req, res) => {
 app.put('/bookmarks/:id', async (req, res) => {
   try {
     const { title, url } = req.body;
-    console.log(req.body, 333333333)
     const updatedBookmark = await db.Bookmark.findByIdAndUpdate(
       req.params.id,
       { title, url },

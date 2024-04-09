@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 const BookmarkForm = () => {
 const [title, setTitle] = useState("")
 const [url, setURL] = useState("")
-
+const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch(`http://localhost:3000/bookmarks/`, {
@@ -22,7 +22,7 @@ const [url, setURL] = useState("")
         }
       })
       .then(() => {
-        <Link to={"/"}></Link>;
+      navigate("/")
       })
       .catch((error) => console.error("Error:", error));
   };
@@ -53,11 +53,11 @@ return (
         />
         <button type="submit">submit</button>
       </form>
-      <a href="/bookmarks">Go back</a>
+      <a href="/">Go back</a>
     </div>
   );
 };
 
   export default BookmarkForm;
 
-  // Great work team! Trying one more time!
+  
