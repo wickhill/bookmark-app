@@ -55,6 +55,7 @@ app.delete('/bookmarks/:id', async (req, res) => {
 app.put('/bookmarks/:id', async (req, res) => {
   try {
     const { title, url } = req.body;
+    console.log(req.body, 333333333)
     const updatedBookmark = await db.Bookmark.findByIdAndUpdate(
       req.params.id,
       { title, url },

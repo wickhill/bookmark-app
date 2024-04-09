@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from "react-router-dom";
 import BookmarkList from './components/BookmarkList';
+import BookmarkDetails from './components/BookmarkDetails';
+import BookmarkForm from './components/BookmarkForm';
+
 import './App.css'
 
 function App() {
@@ -49,7 +53,11 @@ function App() {
 
   return (
     <div className="App">
- <BookmarkList bookmarks={bookmarks} onDelete={onDelete} onUpdate={onUpdate} />
+  <Routes>
+ <Route path="/" element={<BookmarkList bookmarks={bookmarks} onDelete={onDelete} onUpdate={onUpdate} />} />
+ <Route path="/:id" element={<BookmarkDetails />} />
+ <Route path="/new" element={<BookmarkForm />} />
+ </Routes>
     </div>
   );
 }
