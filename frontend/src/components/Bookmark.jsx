@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom"
 
 function Bookmark({ bookmark, onDelete, onUpdate }) {
   const { _id, title, url } = bookmark;
@@ -14,7 +15,7 @@ function Bookmark({ bookmark, onDelete, onUpdate }) {
         <button onClick={() => onDelete(_id)}>Delete</button>
       )}
       {onUpdate && (
-        <button onClick={() => onUpdate(_id)}>Update</button>
+        <Link to={"/"}>Update</Link>
       )}
     </div>
   );
