@@ -3,10 +3,12 @@ import Bookmark from './Bookmark';
 
 function BookmarkList({ bookmarks, onDelete, onUpdate }) {
     return (
-      <div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8">
         {bookmarks.length > 0 ? (
           bookmarks.map((bookmark) => (
-            <Bookmark key={bookmark._id} bookmark={bookmark} onDelete={onDelete} onUpdate={onUpdate} />
+            <div key={bookmark._id} className="col-span-1">
+              <Bookmark bookmark={bookmark} onDelete={onDelete} onUpdate={onUpdate} />
+              </div>
           ))
         ) : (
           <p>No bookmarks found</p>

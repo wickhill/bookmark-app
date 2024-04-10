@@ -5,7 +5,7 @@ import BookmarkDetails from './components/BookmarkDetails';
 import BookmarkForm from './components/BookmarkForm';
 import UpdateBookmark from './components/UpdateBookmark';
 
-import './App.css'
+import './index.css'
 
 
 function App() {
@@ -54,7 +54,10 @@ function App() {
   
 
   return (
-    <div className="App">
+    <div className="bg-cyan-700 min-h-screen">
+      <header className="text-center pt-12 pb-8">
+      <h1 className="text-4xl font-bold text-yellow-400">Bookmarks</h1>
+      </header>
   <Routes>
  <Route path="/" element={<BookmarkList bookmarks={bookmarks} onDelete={onDelete} onUpdate={onUpdate} />} />
  <Route path="bookmarks/:id" element={<BookmarkDetails URL={URL} />} />
