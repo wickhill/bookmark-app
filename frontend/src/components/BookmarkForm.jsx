@@ -59,5 +59,3 @@ return (
 };
 
   export default BookmarkForm;
-
-  
