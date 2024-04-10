@@ -71,7 +71,7 @@ const UpdateBookmark = () => {
         />
         <button type="submit">submit</button>
       </form>
-      <a href="/bookmarks">Go back</a>
+      <a href="/">Go back</a>
     </div>
   )
 }
