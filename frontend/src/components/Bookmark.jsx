@@ -14,7 +14,7 @@ function Bookmark({ bookmark, onDelete }) {
       {/* Show Info button */}
       <Link to={`/bookmarks/${_id}`}>Show Info</Link>
       {/* Link to update route*/}
-      <Link to={`/update/${_id}`}>Update</Link>
+      <Link to={`/bookmarks/${_id}/update`}>Update</Link>
        {/* Delete button */}
        <button onClick={() => onDelete(_id)}>Delete</button>
     </div>

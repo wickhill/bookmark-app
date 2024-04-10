@@ -3,9 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import BookmarkList from './components/BookmarkList';
 import BookmarkDetails from './components/BookmarkDetails';
 import BookmarkForm from './components/BookmarkForm';
-
+import UpdateBookmark from './components/UpdateBookmark';
 
 import './App.css'
+
 
 function App() {
   const [bookmarks, setBookmarks] = useState([]);
@@ -58,6 +59,7 @@ function App() {
  <Route path="/" element={<BookmarkList bookmarks={bookmarks} onDelete={onDelete} onUpdate={onUpdate} />} />
  <Route path="bookmarks/:id" element={<BookmarkDetails URL={URL} />} />
  <Route path="/new" element={<BookmarkForm />} />
+ <Route path="bookmarks/:id/update" element={<UpdateBookmark />} />
  </Routes>
     </div>
   );
