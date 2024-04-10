@@ -28,22 +28,22 @@ const navigate = useNavigate();
   };
 
 return (
-    <div className="text-black">
-      <h1>Create New Bookmark</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title:</label>
+    <div className="flex flex-col items-center justify-center">
+  <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8 m-4">
+      <h1 className="text-2xl font-bold text-center text-amber-600 mb-8">Create New Bookmark</h1>
+      <form className="space-y-6" onSubmit={handleSubmit}>
+        <label htmlFor="title" >Title:</label>
         <input
-          className="text-white"
+          className="bg-gray-50 border border-gray-300 text-grey-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           type="text"
           name="title"
           id="title"
-          placeholder="Enter title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <label htmlFor="url">URL:</label>
+        <label htmlFor="url" className="text-sm font-medium text-gray-700 block mb-2">URL:</label>
         <input
-          className="text-white"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           type="text"
           name="url"
           id="url"
@@ -51,9 +51,10 @@ return (
           value={url}
           onChange={(e) => setURL(e.target.value)}
         />
-        <button type="submit">submit</button>
+        <button type="submit"className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">submit</button>
       </form>
-      <a href="/">Go back</a>
+      <a href="/" className="text-blue-600 hover:text-blue-800 inline-block mt-4">Go back</a>
+    </div>
     </div>
   );
 };
