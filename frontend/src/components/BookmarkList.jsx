@@ -11,7 +11,7 @@ function BookmarkList({ bookmarks, onDelete, onUpdate }) {
               </div>
           ))
         ) : (
-          <p>No bookmarks found</p>
+          <p className="text-center text-2xl text-orange-500">No bookmarks found</p>
         )}
       </div>
     );

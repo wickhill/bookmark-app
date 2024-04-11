@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import BookmarkList from './components/BookmarkList';
 import BookmarkDetails from './components/BookmarkDetails';
 import BookmarkForm from './components/BookmarkForm';
 import UpdateBookmark from './components/UpdateBookmark';
+
 
 import './index.css'
 
@@ -11,6 +12,7 @@ import './index.css'
 function App() {
   const [bookmarks, setBookmarks] = useState([]);
   const URL = "http://localhost:3000/"
+  const location = useLocation();
   useEffect(() => {
     const fetchBookmarks = async () => {
       try {
@@ -23,7 +25,8 @@ function App() {
     };
   
     fetchBookmarks();
-  }, []); 
+  }, [location]); 
+  //Reference: https://www.geeksforgeeks.org/react-router-hooks/#uselocation-hook
 
     // handle deletion of a bookmark
     const onDelete = (id) => {
@@ -63,6 +66,7 @@ function App() {
  <Route path="bookmarks/:id" element={<BookmarkDetails URL={URL} />} />
  <Route path="/new" element={<BookmarkForm />} />
  <Route path="bookmarks/:id/update" element={<UpdateBookmark />} />
+ 
  </Routes>
     </div>
   );
